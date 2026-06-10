@@ -1,4 +1,6 @@
 ---
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
 interface Props {
   title: string;
   description?: string;
@@ -7,6 +9,8 @@ interface Props {
 const { title, description = "Portafolio profesional de Cristofher Marquez, Junior Fullstack Developer enfocado en crear experiencias web de alta calidad, interactivas y optimizadas." } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://cristofher.dev');
+
+injectSpeedInsights();
 ---
 
 <!doctype html>
