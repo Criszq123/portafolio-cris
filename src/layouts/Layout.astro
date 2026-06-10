@@ -1,0 +1,141 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Portafolio profesional de Front-end Developer enfocado en crear experiencias web modernas, interactivas y accesibles." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-dark-950 text-dark-100 font-sans antialiased selection:bg-brand-500 selection:text-white relative overflow-x-hidden min-h-screen flex flex-col">
+    <!-- Ambient glowing backgrounds -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none overflow-hidden z-0">
+      <div class="absolute top-[-10%] left-[10%] w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] rounded-full bg-brand-900/10 blur-[80px] sm:blur-[120px]"></div>
+      <div class="absolute top-[20%] right-[5%] w-[250px] h-[250px] sm:w-[450px] sm:h-[450px] rounded-full bg-brand-950/20 blur-[60px] sm:blur-[100px]"></div>
+    </div>
+    
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 w-full border-b border-dark-900 bg-dark-950/80 backdrop-blur-md transition-all duration-300">
+      <div class="mx-auto flex max-w-7xl items-center justify-between p-4 sm:px-6 lg:px-8">
+        <a href="#hero" class="flex items-center gap-2 group">
+          <div class="h-9 w-9 rounded-lg bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white font-bold text-lg font-sans shadow-lg shadow-brand-950/40 transition-transform group-hover:scale-105 duration-300">
+            C
+          </div>
+          <span class="font-outfit text-xl font-bold bg-gradient-to-r from-white via-dark-100 to-brand-300 bg-clip-text text-transparent group-hover:opacity-90 transition-opacity">
+            Cris<span class="text-brand-500">.dev</span>
+          </span>
+        </a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#hero" class="text-sm font-medium text-dark-300 hover:text-white transition-colors duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all hover:after:w-full">Inicio</a>
+          <a href="#experience" class="text-sm font-medium text-dark-300 hover:text-white transition-colors duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all hover:after:w-full">Experiencia</a>
+          <!-- <a href="#projects" class="text-sm font-medium text-dark-300 hover:text-white transition-colors duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all hover:after:w-full">Proyectos</a> -->
+          <a href="#contact" class="text-sm font-medium text-dark-300 hover:text-white transition-colors duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all hover:after:w-full">Contacto</a>
+        </nav>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-toggle" type="button" class="md:hidden p-2 text-dark-300 hover:text-white focus:outline-none" aria-label="Toggle Menu">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-menu" class="hidden md:hidden border-b border-dark-900 bg-dark-950/95 backdrop-blur-lg">
+        <div class="space-y-1 px-4 pb-6 pt-2">
+          <a href="#hero" class="block rounded-lg px-3 py-2.5 text-base font-medium text-dark-300 hover:bg-dark-900 hover:text-white transition-all">Inicio</a>
+          <a href="#experience" class="block rounded-lg px-3 py-2.5 text-base font-medium text-dark-300 hover:bg-dark-900 hover:text-white transition-all">Experiencia</a>
+          <!-- <a href="#projects" class="block rounded-lg px-3 py-2.5 text-base font-medium text-dark-300 hover:bg-dark-900 hover:text-white transition-all">Proyectos</a> -->
+          <a href="#contact" class="block rounded-lg px-3 py-2.5 text-base font-medium text-dark-300 hover:bg-dark-900 hover:text-white transition-all">Contacto</a>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="flex-grow z-10">
+      <slot />
+    </main>
+    
+    <!-- Footer -->
+    <footer class="border-t border-dark-900 bg-dark-950 py-12 relative overflow-hidden z-10">
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[150px] pointer-events-none overflow-hidden z-0">
+        <div class="absolute bottom-[-50px] left-[30%] w-[300px] h-[150px] rounded-full bg-brand-950/20 blur-[50px]"></div>
+      </div>
+      
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col items-center justify-between gap-6 md:flex-row">
+          <div class="flex items-center gap-2">
+            <div class="h-7 w-7 rounded-md bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white font-bold text-sm">
+              C
+            </div>
+            <span class="font-outfit text-lg font-bold text-white">Cris<span class="text-brand-500">.dev</span></span>
+          </div>
+          
+          <p class="text-center text-sm text-dark-400">
+            &copy; {new Date().getFullYear()} Cris.dev. Todos los derechos reservados. Diseñado con pasión.
+          </p>
+          
+          <div class="flex gap-6">
+            <a href="https://github.com/criszq123" target="_blank" rel="noopener noreferrer" class="text-dark-400 hover:text-brand-400 transition-colors" aria-label="GitHub">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-dark-400 hover:text-brand-400 transition-colors" aria-label="LinkedIn">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- Mobile Menu Interactivity Script -->
+    <script>
+      const toggleBtn = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const openIcon = document.getElementById('menu-icon-open');
+      const closeIcon = document.getElementById('menu-icon-close');
+      
+      if (toggleBtn && mobileMenu && openIcon && closeIcon) {
+        toggleBtn.addEventListener('click', () => {
+          const isHidden = mobileMenu.classList.contains('hidden');
+          if (isHidden) {
+            mobileMenu.classList.remove('hidden');
+            openIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+          } else {
+            mobileMenu.classList.add('hidden');
+            openIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+          }
+        });
+        
+        // Close menu when clicking link
+        const links = mobileMenu.querySelectorAll('a');
+        links.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            openIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

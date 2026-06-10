@@ -1,0 +1,28 @@
+---
+import { projectsData } from './projectsData';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<section id="projects" class="py-24 relative overflow-hidden">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Header -->
+    <div class="text-left mb-16 space-y-3">
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-400 font-mono">
+        Portafolio
+      </span>
+      <h2 class="font-outfit text-3xl sm:text-4xl font-extrabold text-white">
+        Proyectos Destacados
+      </h2>
+      <p class="text-sm sm:text-base text-dark-400 max-w-xl">
+        Una selección de desarrollos en los que he trabajado recientemente, aplicando buenas prácticas de desarrollo e interactividad.
+      </p>
+    </div>
+    
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projectsData.map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+  </div>
+</section>

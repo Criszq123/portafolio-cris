@@ -1,0 +1,51 @@
+---
+import ExperienceCard from './ExperienceCard.astro';
+
+const experiences = [
+  {
+    role: "Junior Front-End Developer",
+    company: "Win2Tec · Campeche, MX (Híbrido)",
+    period: "Ene 2026 - May 2026",
+    description: "Desarrollo de características para el GMS (Game Management System) en producción con React.js y Vue.js. Implementación de componentes de UI y lógica de formularios con Vue 3 (Composition API), consumo de APIs REST integradas con Express.js, y corrección de bugs bajo prácticas ágiles.",
+    tags: ["React.js", "Vue.js", "Vue 3", "TypeScript", "Express.js", "Tailwind CSS"]
+  },
+  {
+    role: "Venue Result Manager (VRM)",
+    company: "CIS Games 2025 · Bakú, Azerbaiyán (Presencial)",
+    period: "Sep 2025",
+    description: "Gestión y registro en tiempo real de eventos de partidos de fútbol y chovgan en un evento deportivo internacional multideportivo bajo condiciones críticas de tiempo y alta presión, asegurando precisión y rapidez en los sistemas de puntaje oficiales.",
+    tags: ["Gestión de Datos", "Trabajo en Equipo", "Eventos Internacionales"]
+  },
+  {
+    role: "QA Tester",
+    company: "Win2Tec · Campeche, MX",
+    period: "2025",
+    description: "Ejecución de pruebas funcionales y de regresión en la plataforma GMS previo a la transición hacia el equipo de desarrollo. Identificación y documentación de reportes de bugs y casos de borde.",
+    tags: ["Manual Testing", "QA", "Bug Reports", "Casos de Borde"]
+  }
+];
+---
+
+<section id="experience" class="py-24 relative overflow-hidden">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Header -->
+    <div class="text-left mb-16 space-y-3">
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-400 font-mono">
+        Trayectoria
+      </span>
+      <h2 class="font-outfit text-3xl sm:text-4xl font-extrabold text-white">
+        Experiencia Profesional
+      </h2>
+      <p class="text-sm sm:text-base text-dark-400 max-w-xl">
+        Mi recorrido diseñando y programando interfaces interactivas para diferentes tipos de productos y negocios.
+      </p>
+    </div>
+    
+    <!-- Timeline container -->
+    <div class="relative before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-[2px] before:bg-gradient-to-b before:from-brand-500 before:via-dark-800 before:to-transparent space-y-12">
+      {experiences.map((exp) => (
+        <ExperienceCard {...exp} />
+      ))}
+    </div>
+  </div>
+</section>
