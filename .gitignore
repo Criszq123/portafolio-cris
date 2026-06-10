@@ -1,2 +1,27 @@
-.astro
-node_modules
+# Cache y compilados de Astro
+.astro/
+dist/
+
+# Dependencias
+node_modules/
+
+# Asistentes de IA locales
+.agents/
+.claude/
+skills-lock.json
+
+# Entorno y variables secretas
+.env
+.env.local
+.env.*
+!.env.example
+
+# Logs de error
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Sistema
+.DS_Store
+Thumbs.db
