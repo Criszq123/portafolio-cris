@@ -9,6 +9,16 @@ export const POST: APIRoute = async ({ request }) => {
     const email = data.get('email')?.toString().trim();
     const subject = data.get('subject')?.toString().trim();
     const message = data.get('message')?.toString().trim();
+    const honeypot = data.get('honeypot')?.toString();
+
+    // 0. Validación de Honeypot (Filtro Anti-Spam para bots)
+    if (honeypot) {
+      console.warn('[API Contacto] Intento de spam bloqueado por Honeypot.');
+      return new Response(
+        JSON.stringify({ success: '¡Mensaje enviado con éxito!' }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
 
     // 1. Validación simple de campos obligatorios
     if (!name || !email || !subject || !message) {
