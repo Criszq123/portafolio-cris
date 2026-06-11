@@ -1,7 +1,7 @@
 ---
-import Badge from '@ui/Badge.astro';
-import Button from '@ui/Button.astro';
-import type { Project } from '../../types/portfolio';
+import Badge from "@ui/Badge.astro";
+import Button from "@ui/Button.astro";
+import type { Project } from "../../types/portfolio";
 
 interface Props {
   project: Project;
@@ -10,19 +10,33 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<div class="group relative flex flex-col justify-between rounded-xl border border-dark-800 bg-dark-900/40 p-6 backdrop-blur-sm transition-all duration-300 hover:border-brand-900/40 hover:bg-dark-900/60 hover:-translate-y-1 shadow-lg shadow-black/10 hover:shadow-brand-950/5">
+<div
+  class="group relative flex flex-col justify-between rounded-xl border border-dark-800 bg-dark-900/40 p-6 backdrop-blur-sm transition-all duration-300 hover:border-brand-900/40 hover:bg-dark-900/60 hover:-translate-y-1 shadow-lg shadow-black/10 hover:shadow-brand-950/5"
+>
   <!-- Glowing Hover Effect -->
-  <div class="absolute -inset-[1px] rounded-xl bg-gradient-to-tr from-brand-700/0 via-brand-500/0 to-brand-500/0 group-hover:from-brand-800/10 group-hover:via-brand-500/5 group-hover:to-brand-500/10 transition-all duration-500 pointer-events-none"></div>
-  
+  <div
+    class="absolute -inset-[1px] rounded-xl bg-gradient-to-tr from-brand-700/0 via-brand-500/0 to-brand-500/0 group-hover:from-brand-800/10 group-hover:via-brand-500/5 group-hover:to-brand-500/10 transition-all duration-500 pointer-events-none"
+  >
+  </div>
+
   <div class="space-y-4">
     <!-- Project Header Visual Simulation -->
-    <div class="h-32 w-full rounded-lg bg-dark-950/60 border border-dark-800/60 flex items-center justify-center relative overflow-hidden group-hover:border-brand-900/20 transition-colors duration-300">
+    <div
+      class="h-32 w-full rounded-lg bg-dark-950/60 border border-dark-800/60 flex items-center justify-center relative overflow-hidden group-hover:border-brand-900/20 transition-colors duration-300"
+    >
       <!-- Grid pattern -->
-      <div class="absolute inset-0 bg-[linear-gradient(to_right,#1f161c_1px,transparent_1px),linear-gradient(to_bottom,#1f161c_1px,transparent_1px)] bg-[size:14px_24px] opacity-30"></div>
-      
+      <div
+        class="absolute inset-0 bg-[linear-gradient(to_right,#1f161c_1px,transparent_1px),linear-gradient(to_bottom,#1f161c_1px,transparent_1px)] bg-[size:14px_24px] opacity-30"
+      >
+      </div>
+
       <!-- Abstract visual graphics to represent frontend UI layout -->
-      <div class="relative w-4/5 h-3/5 rounded bg-dark-900 border border-dark-800 p-2 flex flex-col justify-between transition-transform duration-500 group-hover:scale-105">
-        <div class="flex items-center justify-between border-b border-dark-800/80 pb-1.5">
+      <div
+        class="relative w-4/5 h-3/5 rounded bg-dark-900 border border-dark-800 p-2 flex flex-col justify-between transition-transform duration-500 group-hover:scale-105"
+      >
+        <div
+          class="flex items-center justify-between border-b border-dark-800/80 pb-1.5"
+        >
           <div class="flex items-center gap-1">
             <div class="h-1.5 w-1.5 rounded-full bg-brand-500/50"></div>
             <div class="h-1 w-8 rounded bg-dark-800"></div>
@@ -30,7 +44,9 @@ const { project } = Astro.props;
           <div class="h-1 w-4 rounded bg-dark-800"></div>
         </div>
         <div class="grid grid-cols-3 gap-1.5">
-          <div class="h-5 rounded bg-brand-950/30 border border-brand-900/10 flex items-center justify-center">
+          <div
+            class="h-5 rounded bg-brand-950/30 border border-brand-900/10 flex items-center justify-center"
+          >
             <span class="text-[6px] font-mono text-brand-400">UI</span>
           </div>
           <div class="h-5 rounded bg-dark-800/40"></div>
@@ -41,7 +57,9 @@ const { project } = Astro.props;
 
     <!-- Info -->
     <div class="space-y-2">
-      <h3 class="font-outfit text-xl font-bold text-white group-hover:text-brand-300 transition-colors">
+      <h3
+        class="font-outfit text-xl font-bold text-white group-hover:text-brand-300 transition-colors"
+      >
         {project.title}
       </h3>
       <p class="text-sm text-dark-400 leading-relaxed font-sans line-clamp-3">
@@ -53,23 +71,47 @@ const { project } = Astro.props;
   <!-- Footer Tags & Links -->
   <div class="mt-6 space-y-4 pt-4 border-t border-dark-800/50">
     <div class="flex flex-wrap gap-1.5">
-      {project.tags.map((tag) => (
-        <Badge variant="primary">{tag}</Badge>
-      ))}
+      {project.tags.map((tag) => <Badge variant="primary">{tag}</Badge>)}
     </div>
 
     <div class="flex gap-3 pt-2">
-      <Button href={project.link} target="_blank" rel="noopener noreferrer" variant="primary" size="sm" className="flex-1">
+      <Button
+        href={project.link || undefined}
+        target={project.link ? "_blank" : undefined}
+        rel={project.link ? "noopener noreferrer" : undefined}
+        onclick={project.link ? undefined : "showToast('Actualmente este proyecto no está hosteado. Puedes revisar su código en GitHub.')"}
+        variant="primary"
+        size="sm"
+        className="flex-1"
+      >
         Demo
-        <svg class="ml-1.5 h-3 w-3" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+        <svg
+          class="ml-1.5 h-3 w-3"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2.5"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+          ></path>
         </svg>
       </Button>
-      {project.github && (
-        <Button href={project.github} target="_blank" rel="noopener noreferrer" variant="outline" size="sm">
-          GitHub
-        </Button>
-      )}
+      {
+        project.github && (
+          <Button
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="outline"
+            size="sm"
+          >
+            GitHub
+          </Button>
+        )
+      }
     </div>
   </div>
 </div>
