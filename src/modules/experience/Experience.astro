@@ -1,6 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import ExperienceCard from "./ExperienceCard.astro";
+import type { Experience } from "../../types/portfolio";
 
 const experienceEntry = await getEntry("experience", "list");
 const experiences = experienceEntry ? experienceEntry.data.experiences : [];
@@ -28,7 +29,7 @@ const experiences = experienceEntry ? experienceEntry.data.experiences : [];
     <div
       class="relative before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-[2px] before:bg-gradient-to-b before:from-brand-500 before:via-dark-800 before:to-transparent space-y-12"
     >
-      {experiences.map((exp) => <ExperienceCard {...exp} />)}
+      {experiences.map((exp: Experience) => <ExperienceCard {...exp} />)}
     </div>
   </div>
 </section>
