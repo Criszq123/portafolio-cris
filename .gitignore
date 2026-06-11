@@ -1,6 +1,7 @@
 # Cache y compilados de Astro
 .astro/
 dist/
+.vercel/
 
 # Dependencias
 node_modules/
