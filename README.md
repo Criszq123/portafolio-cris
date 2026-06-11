@@ -107,6 +107,38 @@ Si quieres agregar un nuevo proyecto, sigue estos pasos:
 }
 ```
 
+
+---
+
+## 📧 Formulario de Contacto (Backend Híbrido & Resend)
+
+El portafolio incluye un formulario de contacto totalmente funcional e interactivo que envía correos reales utilizando **Astro en modo híbrido (`output: 'hybrid'`)** y el servicio **Resend**.
+
+### Cómo Funciona el Sistema de Correos
+
+1. **Arquitectura Híbrida**: Todo el sitio sigue cargando de forma ultra-rápida como HTML estático, con la única excepción del endpoint dinámico en `src/pages/api/contact.ts`. Vercel compila automáticamente este archivo como una *Serverless Function* de Node.js que se ejecuta bajo demanda.
+2. **Protección Anti-Spam (Honeypot)**:
+   - Añadimos un campo trampa oculto mediante CSS (`honeypot`).
+   - Los bots automatizados de spam leen el HTML y lo rellenan mecánicamente al intentar enviar publicidad.
+   - El backend valida este campo: si contiene información, el correo es descartado inmediatamente y se devuelve una respuesta ficticia de éxito para desalentar al bot.
+3. **Gestión de Respuestas**: Los emails llegan directamente a tu buzón personal. El campo `reply_to` se configura dinámicamente con la dirección ingresada por el usuario. Esto te permite responderle al remitente simplemente pulsando "Responder" desde tu aplicación de correo habitual.
+
+### Configuración del Entorno
+
+Para habilitar el envío de correos, se requiere configurar la API Key de **Resend**:
+
+* **Entorno de Desarrollo Local**:
+  1. Copia el archivo `.env.example` y renómbralo como `.env`.
+  2. Crea una cuenta gratuita en [Resend](https://resend.com) y genera una API Key de prueba.
+  3. Pega tu clave en el archivo local:
+     ```env
+     RESEND_API_KEY=re_tu_api_key_aqui
+     ```
+* **Entorno de Producción (Vercel)**:
+  1. Ve a **Settings** -> **Environment Variables** en el panel de tu proyecto de Vercel.
+  2. Crea la variable `RESEND_API_KEY` y asígnale el valor de tu clave.
+  3. El archivo `package.json` ya fuerza el uso de Node.js `20.x` en Vercel para evitar fallos por runtime obsoleto.
+
 ---
 
 ## 🚀 Comandos Útiles
