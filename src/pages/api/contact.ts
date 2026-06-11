@@ -37,10 +37,11 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // 3. Obtener API key de Resend
+    // 3. Obtener API key y correo de destino de variables de entorno
     const resendApiKey = import.meta.env.RESEND_API_KEY;
-    if (!resendApiKey) {
-      console.error('[API Contacto] Error: La variable RESEND_API_KEY no está configurada.');
+    const contactEmail = import.meta.env.CONTACT_EMAIL;
+    if (!resendApiKey || !contactEmail) {
+      console.error('[API Contacto] Error: Las variables de entorno RESEND_API_KEY o CONTACT_EMAIL no están configuradas.');
       return new Response(
         JSON.stringify({ error: 'Error de configuración en el servidor.' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
@@ -56,7 +57,7 @@ export const POST: APIRoute = async ({ request }) => {
       },
       body: JSON.stringify({
         from: 'Contacto Portafolio <onboarding@resend.dev>',
-        to: 'your_email@example.com', // Correo destino del propietario
+        to: contactEmail, // Correo destino del propietario
         reply_to: email, // Permite responder directamente al remitente desde la bandeja de entrada
         subject: `[Portafolio] ${subject}`,
         html: `
