@@ -2,8 +2,16 @@
 import { getEntry } from "astro:content";
 import ExperienceCard from "./ExperienceCard.astro";
 import type { Experience } from "../../types/portfolio";
+import { useTranslations } from "../../i18n/utils";
 
-const experienceEntry = await getEntry("experience", "list");
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const experienceEntry = await getEntry("experience", `${lang}/list`);
 const experiences = experienceEntry ? experienceEntry.data.experiences : [];
 ---
 
@@ -14,14 +22,13 @@ const experiences = experienceEntry ? experienceEntry.data.experiences : [];
       <span
         class="text-xs font-bold uppercase tracking-wider text-brand-400 font-mono"
       >
-        Trayectoria
+        {t('experience.badge')}
       </span>
       <h2 class="font-outfit text-3xl sm:text-4xl font-extrabold text-white">
-        Experiencia Profesional
+        {t('experience.title')}
       </h2>
       <p class="text-sm sm:text-base text-dark-400 max-w-xl">
-        Mi recorrido diseñando y programando interfaces interactivas para
-        diferentes tipos de productos y negocios.
+        {t('experience.subtitle')}
       </p>
     </div>
 
