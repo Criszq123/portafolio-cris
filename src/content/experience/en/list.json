@@ -1,0 +1,40 @@
+{
+  "experiences": [
+    {
+      "role": "Junior Front-End Developer",
+      "company": "Win2Tec · Campeche, MX (Hybrid)",
+      "period": "Jan 2026 - May 2026",
+      "description": "Developing features for the GMS (Game Management System) in production using React.js and Vue.js. Implementing UI components and form logic with Vue 3 (Composition API), consuming REST APIs, and resolving bugs under agile methodologies.",
+      "tags": [
+        "React.js",
+        "Vue.js",
+        "Vue 3",
+        "TypeScript",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "role": "Venue Result Manager (VRM)",
+      "company": "CIS Games 2025 · Baku, Azerbaijan (On-site)",
+      "period": "Sep 2025 - Oct 2025",
+      "description": "Real-time management and recording of football and chovgan match events in an international multi-sport event under critical time conditions and high pressure, ensuring precision and speed in the official scoring systems.",
+      "tags": [
+        "Data Management",
+        "Teamwork",
+        "International Events"
+      ]
+    },
+    {
+      "role": "QA Tester",
+      "company": "Win2Tec · Campeche, MX",
+      "period": "May 2025 - Jan 2026",
+      "description": "Executing functional and regression tests on the GMS platform prior to transitioning to the development team. Identifying and documenting bug reports and edge cases.",
+      "tags": [
+        "Manual Testing",
+        "QA",
+        "Bug Reports",
+        "Edge Cases"
+      ]
+    }
+  ]
+}
