@@ -19,7 +19,8 @@ Este es el repositorio del portafolio profesional de Cristofher, construido de f
 ├── src/
 │   ├── content/               # Colecciones de datos (Astro Content Collections)
 │   │   ├── experience/
-│   │   │   └── list.json      # Archivo JSON con las experiencias laborales
+│   │   │   ├── es/list.json   # Experiencias laborales en español
+│   │   │   └── en/list.json   # Experiencias laborales en inglés
 │   │   └── config.ts          # Validación de esquemas de colecciones (Zod)
 │   ├── layouts/               # Plantillas base (Layout.astro)
 │   ├── modules/               # Componentes agrupados por secciones (módulos)
@@ -42,8 +43,9 @@ La sección de **Experiencia Profesional** está gestionada de forma dinámica u
 Sigue estos pasos para añadir una nueva experiencia:
 
 ### Paso 1: Abrir el archivo de datos
-Dirígete al archivo:
-`src/content/experience/list.json`
+Dirígete a los archivos:
+- Español: `src/content/experience/es/list.json`
+- Inglés: `src/content/experience/en/list.json`
 
 ### Paso 2: Estructura del objeto de experiencia
 Cada experiencia laboral en la lista es un objeto JSON que debe cumplir con el siguiente esquema:
@@ -57,7 +59,7 @@ Cada experiencia laboral en la lista es un objeto JSON que debe cumplir con el s
 | `tags` | `string[]` | Lista de tecnologías, metodologías o habilidades destacadas. | `["React.js", "Vue.js", "TypeScript"]` |
 
 ### Paso 3: Añadir la experiencia al arreglo
-Abre [list.json](file:///c:/Users/crist/Desktop/portafolio-cris/src/content/experience/list.json) y agrega un nuevo objeto al principio (o al final) del arreglo `experiences`.
+Abre tanto [es/list.json](file:///c:/Users/crist/Desktop/portafolio-cris/src/content/experience/es/list.json) como [en/list.json](file:///c:/Users/crist/Desktop/portafolio-cris/src/content/experience/en/list.json) y agrega el objeto correspondiente con las traducciones al principio (o al final) del arreglo `experiences`.
 
 *Nota: Generalmente se añaden en orden cronológico inverso (el trabajo más reciente primero).*
 
@@ -83,7 +85,7 @@ Abre [list.json](file:///c:/Users/crist/Desktop/portafolio-cris/src/content/expe
 ```
 
 ### Paso 4: Validación del esquema
-Astro valida automáticamente que los datos cumplan con las reglas definidas en [config.ts](file:///c:/Users/crist/Desktop/portafolio-cris/src/content/config.ts). Si accidentalmente omites algún campo requerido o pones un tipo de dato incorrecto (como un número en lugar de un tag de texto), Astro te mostrará un error en la consola al compilar o al correr el servidor de desarrollo.
+Astro valida automáticamente que los datos cumplan con las reglas definidas en `src/content/config.ts`. Si accidentalmente omites algún campo requerido o pones un tipo de dato incorrecto (como un número en lugar de un tag de texto), Astro te mostrará un error en la consola al compilar o al correr el servidor de desarrollo.
 
 ---
 
@@ -95,17 +97,26 @@ Actualmente, los proyectos se definen en el archivo de TypeScript:
 Si quieres agregar un nuevo proyecto, sigue estos pasos:
 
 1. Abre [projectsData.ts](file:///c:/Users/crist/Desktop/portafolio-cris/src/modules/projects/projectsData.ts).
-2. Agrega un nuevo objeto al arreglo `projectsData` siguiendo la estructura:
+2. Agrega el nuevo objeto en el arreglo `projectsDataEs` (para español) y su traducción en `projectsDataEn` (para inglés) siguiendo la estructura:
 
 ```typescript
 {
   title: "Nombre del Proyecto",
-  description: "Descripción breve del proyecto, características y propósito.",
+  description: "Descripción del proyecto en el idioma correspondiente.",
   tags: ["Astro", "Tailwind CSS", "TypeScript"],
-  link: "https://url-del-proyecto-en-vivo.com", // Enlace opcional a la demo
+  link: "https://url-del-proyecto-en-vivo.com", // Enlace opcional a la demo (vacío si no está hosteado)
   github: "https://github.com/tu-usuario/nombre-del-repo" // Enlace opcional a GitHub
 }
 ```
+
+---
+
+## 🌐 Enrutamiento e Internacionalización (i18n)
+
+El proyecto utiliza soporte multilenguaje nativo de Astro:
+- **Español**: Accesible en la raíz del sitio `/`.
+- **Inglés**: Accesible bajo el prefijo `/en/`.
+- El cambio se realiza a través del switch selector de idioma `ES/EN` en la barra de navegación.
 
 
 ---
