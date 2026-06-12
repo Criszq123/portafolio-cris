@@ -1,6 +1,16 @@
 ---
-import { projectsData } from './projectsData';
+import { projectsDataEs, projectsDataEn } from './projectsData';
 import ProjectCard from './ProjectCard.astro';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const projectsData = lang === 'es' ? projectsDataEs : projectsDataEn;
 ---
 
 <section id="projects" class="py-24 relative overflow-hidden">
@@ -8,20 +18,20 @@ import ProjectCard from './ProjectCard.astro';
     <!-- Header -->
     <div class="text-left mb-16 space-y-3">
       <span class="text-xs font-bold uppercase tracking-wider text-brand-400 font-mono">
-        Portafolio
+        {t('projects.badge')}
       </span>
       <h2 class="font-outfit text-3xl sm:text-4xl font-extrabold text-white">
-        Proyectos Destacados
+        {t('projects.title')}
       </h2>
       <p class="text-sm sm:text-base text-dark-400 max-w-xl">
-        Una selección de desarrollos en los que he trabajado recientemente, aplicando buenas prácticas de desarrollo e interactividad.
+        {t('projects.subtitle')}
       </p>
     </div>
     
     <!-- Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {projectsData.map((project) => (
-        <ProjectCard project={project} />
+        <ProjectCard project={project} lang={lang} />
       ))}
     </div>
   </div>

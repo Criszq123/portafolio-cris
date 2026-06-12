@@ -2,12 +2,15 @@
 import Badge from "@ui/Badge.astro";
 import Button from "@ui/Button.astro";
 import type { Project } from "../../types/portfolio";
+import { useTranslations } from "../../i18n/utils";
 
 interface Props {
   project: Project;
+  lang: "es" | "en";
 }
 
-const { project } = Astro.props;
+const { project, lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <div
@@ -79,7 +82,7 @@ const { project } = Astro.props;
         href={project.link || undefined}
         target={project.link ? "_blank" : undefined}
         rel={project.link ? "noopener noreferrer" : undefined}
-        onclick={project.link ? undefined : "showToast('Actualmente este proyecto no está hosteado. Puedes revisar su código en GitHub.')"}
+        onclick={project.link ? undefined : `showToast('${t('projects.notHosted')}')`}
         variant="primary"
         size="sm"
         className="flex-1"
