@@ -1,0 +1,25 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const targetUrl = lang === 'es' ? '/en/' : '/';
+const label = lang === 'es' ? 'Cambiar a Inglés' : 'Cambiar a Español';
+---
+
+<a
+  href={targetUrl}
+  aria-label={label}
+  class="relative inline-flex items-center h-8 w-16 border border-dark-800 bg-dark-900/40 rounded-full p-0.5 backdrop-blur-sm select-none cursor-pointer transition-all duration-300 hover:border-brand-500/50"
+>
+  <!-- Background sliding pill -->
+  <span
+    class={`absolute h-6 w-[28px] rounded-full bg-brand-500 shadow-md shadow-brand-950/40 transition-transform duration-300 ease-out ${
+      lang === 'es' ? 'translate-x-[2px]' : 'translate-x-[30px]'
+    }`}
+  ></span>
+  
+  <!-- Labels -->
+  <span class="w-full flex justify-between px-2 text-[10px] font-bold tracking-wider relative z-10 pointer-events-none">
+    <span class={`transition-colors duration-300 ${lang === 'es' ? 'text-white' : 'text-dark-400'}`}>ES</span>
+    <span class={`transition-colors duration-300 ${lang === 'en' ? 'text-white' : 'text-dark-400'}`}>EN</span>
+  </span>
+</a>
