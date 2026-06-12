@@ -7,4 +7,11 @@ export default defineConfig({
   output: 'hybrid',
   adapter: vercel(),
   integrations: [tailwind()],
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: {
+      prefixDefault: false,
+    },
+  },
 });
