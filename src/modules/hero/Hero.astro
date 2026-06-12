@@ -1,5 +1,13 @@
 ---
 import Button from "@ui/Button.astro";
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section
@@ -24,14 +32,14 @@ import Button from "@ui/Button.astro";
           <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"
           ></span>
         </span>
-        Disponible para nuevos proyectos
+        {t('hero.status')}
       </div>
 
       <!-- Headline -->
       <h1
         class="font-outfit text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight"
       >
-        Hola, soy <span
+        {t('hero.title')} <span
           class="bg-gradient-to-r from-brand-400 via-brand-500 to-rose-400 bg-clip-text text-transparent"
           >Cristofher</span
         >
@@ -41,16 +49,13 @@ import Button from "@ui/Button.astro";
 
       <!-- Subtitle -->
       <p class="text-base sm:text-lg text-dark-300 max-w-2xl leading-relaxed">
-        Desarrollador con experiencia práctica en entornos de producción
-        construyendo características con React.js y Vue.js. Transicionado desde
-        QA hacia desarrollo en 2025, aportando una mentalidad enfocada en la
-        calidad del software y la resolución de casos de borde.
+        {t('hero.subtitle')}
       </p>
 
       <!-- Actions -->
       <div class="flex flex-wrap gap-4 pt-4">
         <Button href="#projects" variant="primary" size="lg" className="group">
-          Ver Proyectos
+          {t('hero.btnProjects')}
           <svg
             class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
             fill="none"
@@ -66,7 +71,7 @@ import Button from "@ui/Button.astro";
           </svg>
         </Button>
         <Button href="#contact" variant="outline" size="lg">
-          Contáctame
+          {t('hero.btnContact')}
         </Button>
       </div>
     </div>
@@ -133,8 +138,8 @@ import Button from "@ui/Button.astro";
           <div
             class="pt-2 border-t border-dark-800/60 text-[10px] text-dark-500 flex items-center justify-between"
           >
-            <span>// Campeche, MX · Remote-ready</span>
-            <span class="text-brand-400/80">Ready to build</span>
+            <span>{t('hero.cardLocation')}</span>
+            <span class="text-brand-400/80">{t('hero.cardReady')}</span>
           </div>
         </div>
       </div>
