@@ -1,15 +1,24 @@
 ---
 import SpeedInsights from "@vercel/speed-insights/astro";
+import { useTranslations } from "../i18n/utils";
+import LanguagePicker from "../components/LanguagePicker.astro";
 
 interface Props {
   title: string;
   description?: string;
+  lang?: "es" | "en";
 }
 
 const {
   title,
-  description = "Portafolio profesional de Cristofher Marquez, Junior Fullstack Developer enfocado en crear experiencias web de alta calidad, interactivas y optimizadas.",
+  description,
+  lang = "es",
 } = Astro.props;
+
+const t = useTranslations(lang);
+
+const defaultDesc = t('meta.description');
+const metaDescription = description || defaultDesc;
 
 const canonicalURL = new URL(
   Astro.url.pathname,
@@ -18,7 +27,7 @@ const canonicalURL = new URL(
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,7 +36,7 @@ const canonicalURL = new URL(
 
     <!-- SEO Meta Tags -->
     <title>{title}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={metaDescription} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="robots" content="index, follow" />
 
@@ -75,7 +84,7 @@ const canonicalURL = new URL(
       <div
         class="mx-auto flex max-w-7xl items-center justify-between p-4 sm:px-6 lg:px-8"
       >
-        <a href="#hero" class="flex items-center gap-2 group">
+        <a href={lang === 'es' ? '#hero' : '/en/#hero'} class="flex items-center gap-2 group">
           <div
             class="h-9 w-9 rounded-lg bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white font-bold text-lg font-sans shadow-lg shadow-brand-950/40 transition-transform group-hover:scale-105 duration-300"
           >
@@ -89,27 +98,28 @@ const canonicalURL = new URL(
         </a>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center gap-8">
+        <nav class="hidden md:flex items-center gap-6">
           <a
-            href="#hero"
+            href={lang === 'es' ? '#hero' : '/en/#hero'}
             class="text-sm font-medium text-dark-300 hover:text-white transition-colors duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all hover:after:w-full"
-            >Inicio</a
+            >{t('nav.home')}</a
           >
           <a
-            href="#experience"
+            href={lang === 'es' ? '#experience' : '/en/#experience'}
             class="text-sm font-medium text-dark-300 hover:text-white transition-colors duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all hover:after:w-full"
-            >Experiencia</a
+            >{t('nav.experience')}</a
           >
           <a
-            href="#projects"
+            href={lang === 'es' ? '#projects' : '/en/#projects'}
             class="text-sm font-medium text-dark-300 hover:text-white transition-colors duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all hover:after:w-full"
-            >Proyectos</a
+            >{t('nav.projects')}</a
           >
           <a
-            href="#contact"
+            href={lang === 'es' ? '#contact' : '/en/#contact'}
             class="text-sm font-medium text-dark-300 hover:text-white transition-colors duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all hover:after:w-full"
-            >Contacto</a
+            >{t('nav.contact')}</a
           >
+          <LanguagePicker />
         </nav>
 
         <!-- Mobile Menu Toggle Button -->
@@ -149,25 +159,28 @@ const canonicalURL = new URL(
       >
         <div class="space-y-1 px-4 pb-6 pt-2">
           <a
-            href="#hero"
+            href={lang === 'es' ? '#hero' : '/en/#hero'}
             class="block rounded-lg px-3 py-2.5 text-base font-medium text-dark-300 hover:bg-dark-900 hover:text-white transition-all"
-            >Inicio</a
+            >{t('nav.home')}</a
           >
           <a
-            href="#experience"
+            href={lang === 'es' ? '#experience' : '/en/#experience'}
             class="block rounded-lg px-3 py-2.5 text-base font-medium text-dark-300 hover:bg-dark-900 hover:text-white transition-all"
-            >Experiencia</a
+            >{t('nav.experience')}</a
           >
           <a
-            href="#projects"
+            href={lang === 'es' ? '#projects' : '/en/#projects'}
             class="block rounded-lg px-3 py-2.5 text-base font-medium text-dark-300 hover:bg-dark-900 hover:text-white transition-all"
-            >Proyectos</a
+            >{t('nav.projects')}</a
           >
           <a
-            href="#contact"
+            href={lang === 'es' ? '#contact' : '/en/#contact'}
             class="block rounded-lg px-3 py-2.5 text-base font-medium text-dark-300 hover:bg-dark-900 hover:text-white transition-all"
-            >Contacto</a
+            >{t('nav.contact')}</a
           >
+          <div class="px-3 py-4 border-t border-dark-900/60 mt-2 flex justify-start">
+            <LanguagePicker />
+          </div>
         </div>
       </div>
     </header>
@@ -206,8 +219,7 @@ const canonicalURL = new URL(
           </div>
 
           <p class="text-center text-sm text-dark-400">
-            &copy; {new Date().getFullYear()} Cris.dev. Todos los derechos reservados.
-            Diseñado con pasión.
+            &copy; {new Date().getFullYear()} Cris.dev. {t('footer.rights')}
           </p>
 
           <div class="flex gap-6">
