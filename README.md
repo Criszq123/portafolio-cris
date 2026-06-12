@@ -136,18 +136,21 @@ El portafolio incluye un formulario de contacto totalmente funcional e interacti
 
 ### Configuración del Entorno
 
-Para habilitar el envío de correos, se requiere configurar la API Key de **Resend**:
+Para habilitar el envío de correos, se requiere configurar las variables de entorno para **Resend** y el correo de destino:
 
 * **Entorno de Desarrollo Local**:
   1. Copia el archivo `.env.example` y renómbralo como `.env`.
   2. Crea una cuenta gratuita en [Resend](https://resend.com) y genera una API Key de prueba.
-  3. Pega tu clave en el archivo local:
+  3. Pega tus variables en el archivo local `.env`:
      ```env
      RESEND_API_KEY=re_tu_api_key_aqui
+     CONTACT_EMAIL=tu_correo_de_destino@example.com
      ```
 * **Entorno de Producción (Vercel)**:
   1. Ve a **Settings** -> **Environment Variables** en el panel de tu proyecto de Vercel.
-  2. Crea la variable `RESEND_API_KEY` y asígnale el valor de tu clave.
+  2. Crea las siguientes variables de entorno:
+     - `RESEND_API_KEY`: Tu clave de API de Resend.
+     - `CONTACT_EMAIL`: El correo electrónico personal donde quieres recibir los mensajes de contacto.
   3. El archivo `package.json` ya fuerza el uso de Node.js `20.x` en Vercel para evitar fallos por runtime obsoleto.
 
 ---
